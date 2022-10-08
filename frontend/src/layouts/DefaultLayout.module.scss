@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    margin-left: var(--default-width-nav);
+    background-color: var(--default-bg-color-body);
+    color: var(--white);
+    margin-left: var(--default-width-nav);
+    overflow: hidden;
+    padding: 100px 60px 108px;
+    transition: all .3s ease-in-out;
+    width: calc(100% - var(--default-width-nav));
+    z-index: 1;
+    min-height: 1000px;
+}

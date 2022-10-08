@@ -1,0 +1,14 @@
+.header {
+    align-items: center;
+    background-color: var(--default-bg-color-body);
+    box-shadow: 0 3px 5px rgb(0 0 0 / 10%);
+    display: flex;
+    height: var(--default-height-header);
+    left: var(--default-width-nav);
+    padding: 0 60px;
+    position: fixed;
+    top: 0;
+    transition: all .3s ease-in-out;
+    width: calc(100% - var(--default-width-nav));
+    z-index: 2;
+}

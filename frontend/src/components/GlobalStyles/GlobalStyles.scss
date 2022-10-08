@@ -1,0 +1,123 @@
+@import 'normalize.css';
+
+:root {
+    --default-bg-color-nav: #231b2e;
+    --default-width-nav: 24rem;
+    --default-width-nav-m-t: 70px;
+    --default-height-header: 70px;
+    --default-bg-color-body: #170f23;
+    --default-height-footer: 90px;
+    --default-bg-color-footer: #120c1c;
+    --color-default: #b7bbc5;
+    --color-default-secondary: #7200a1;
+    --color-text-detail: #b7bbc5;
+    --color-text-search: #fbfafc;
+    --color-text-hover: #c662ef;
+    --white: #fff;
+    --bg-color-range: #ffffff66;
+    --bg-color-search: #34224f;
+    --bg-color-more: #2f2739;
+    --bg-color-show-list-song: #120822;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex.itemcenter {
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+        min-width: 90px;
+        height: 25px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+        top: -8px;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #737272;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
+
+.nav-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+.nav-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--default-bgcolor-nav);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #737272;
+    border-radius: 5px;
+}
+
+.nav-scroll::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
+
+::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
