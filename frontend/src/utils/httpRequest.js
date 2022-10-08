@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 const httpRequest = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: `${process.env.REACT_APP_BASE_URL_API}${process.env.REACT_APP_PATH_API}`
 });
+
 
 export const get = async (path, options = {}) => {
     const response = await httpRequest.get(path, options);

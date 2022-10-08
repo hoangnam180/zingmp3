@@ -117,3 +117,35 @@
     }
 
 }
+
+@media only screen and (min-width: 737px) and (max-width: 1024px) {
+    .footer-info-singer {
+        display: none !important;
+    }
+
+    .footer-like {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+
+    .footer-like {
+        display: none !important;
+    }
+
+    .footer-left {
+        .footer-img {
+            height: 40px;
+            width: 40px;
+
+        }
+
+        .footer-info-singer,
+        .footer-info-title {
+            font-size: 1.2rem !important;
+        }
+
+    }
+
+}

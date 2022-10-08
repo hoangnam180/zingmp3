@@ -132,3 +132,55 @@ audio {
 .volume {
     width: 100px;
 }
+
+@media only screen and (min-width: 737px) and (max-width: 1024px) {
+    .rangeSlider {
+        width: 100%;
+    }
+
+    .btn__control {
+        width: 35px;
+    }
+
+    .footer-playlist {
+        span {
+            font-size: 1.8rem !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .footer {
+        bottom: 59px;
+        height: 60px;
+        margin-bottom: 1px;
+        box-shadow: 6px 3px 9px 3px #eeeeee17;
+    }
+
+    .btn__control.none {
+        display: none;
+    }
+
+    .btn__control {
+        font-size: 1.2rem;
+    }
+
+    .volume {
+        display: none;
+    }
+
+    .footer-playlist {
+        margin: 0 auto;
+        border: 1px solid transparent;
+
+        span {
+            font-size: 1.4rem !important;
+        }
+    }
+
+    .time,
+    .totalTime,
+    .rangeSlider {
+        display: none;
+    }
+}

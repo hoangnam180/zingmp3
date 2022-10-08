@@ -5,6 +5,7 @@ import Logo from './components/Logo/Logo';
 import {default as config} from "~/config/routes"
 import ListMain from './components/ListMain';
 import images from '~/assets/imgs';
+import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 
@@ -29,12 +30,20 @@ const menuLibrary = [
     {title : "Gần Đây",img : images.history },
 ]
 
+const menuMobile = [
+    {title : "Cá Nhân",path : config.my_music,icon:"fa-solid fa-book"},
+    {title : "Khám Phá",path : config.home,icon:"fa-solid fa-compact-disc"},
+    {title : "#zingchart",path : config.zing_chart,icon:"fa-solid fa-chart-simple"},
+    {title : "Nhạc Mới",path : config.newmusic,icon:"fa-solid fa-music"},
+    {title : "Top 100",path : config.top100,icon:"fa-solid fa-star"},
+];
+
 
 function SideBar() {
     return (
         <aside className={cx("sidebar")}>
             <Logo />
-            <div>
+            <div className={cx("nav-tab")}>
                 <div className={cx("nav-main")}>
                     <ListMain data={menuMain}/>
                 </div>
@@ -54,6 +63,22 @@ function SideBar() {
                     <i className='ti-plus'></i>
                     <span className={cx("nav-title")}>Tạo playlist mới</span>
                 </div>
+            </div>
+            <div className={cx("nav-mobile")}>
+                <ul>
+                    {menuMobile.map((item,index)=>{
+                        return (
+                            <li>
+                                <NavLink className={(nav) => cx('nav-item-link', { active: nav.isActive })} to={item?.path ? item.path : "/404"}>
+                                    <div className={item.icon || item.img ? cx("flex itemcenter") :"" }>
+                                    {item.img ? <img src={item?.img} className={cx(`${item.img ? "img" : "not-img"}`)} alt="icon" /> : <span className={cx("nav-icon")}><i className={item?.icon}></i></span>}
+                                    <span className={cx("nav-title")}>{item?.title}</span>
+                                    </div>
+                                </NavLink>
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
         </aside>
     );

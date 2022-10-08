@@ -31,10 +31,10 @@ function ControlRight({audioPlayer}) {
     return (  
         <div className={cx("footer-right")}>
                <div className={cx("controls")}>
-                <span className={cx("btn__control")}>
+                <span className={cx("btn__control",{none : true})}>
                     <i className="fa-solid fa-microphone"></i>
                 </span>
-               <span className={cx("btn__control",{volumn:true})} onClick={handleShutdown}>
+               <span className={cx("btn__control",{volumn:true,none:true})} onClick={handleShutdown}>
                     {!shutdown ? <i className="fa-solid fa-volume-high"></i> :
                       <i className="fa-solid fa-volume-xmark"></i> }
                 </span>

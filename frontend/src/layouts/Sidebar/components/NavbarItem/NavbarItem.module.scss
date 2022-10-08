@@ -61,3 +61,41 @@
         }
     }
 }
+
+// Resonsive
+@media only screen and (min-width: 737px) and (max-width: 1024px) {
+
+    .nav-item {
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .nav-item-link {
+            .not-img {
+                display: none;
+            }
+
+            &:hover:not(.active) {
+                .icon-hover {
+                    display: none;
+                }
+            }
+
+            .nav-icon {
+                font-size: 2rem;
+                opacity: .8;
+            }
+
+            .icon-hover {
+                display: none;
+
+                &::after {
+                    display: none;
+                }
+            }
+
+            .nav-title {
+                display: none;
+            }
+        }
+    }
+}

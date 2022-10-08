@@ -37,3 +37,17 @@
 
 
 }
+
+@media only screen and (min-width: 737px) and (max-width: 1024px) {
+    .circle.none {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 736px) {
+    .header-right {
+        flex: initial;
+        display: none;
+    }
+}

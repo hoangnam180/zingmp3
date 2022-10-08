@@ -15,15 +15,15 @@ function Info() {
                     <div className={cx("circle")}><Theme/></div>                               
                  </Tippy>
                  <Tippy delay={[0, 50]} content="Nâng cấp VIP" placement="bottom">
-                    <div className={cx("circle")}><span><i className="fa-regular fa-gem"></i></span></div>
+                    <div className={cx("circle",{none : true})}><span><i className="fa-regular fa-gem"></i></span></div>
                  </Tippy>
                  <Tippy delay={[0, 50]} content="Tải lên" placement="bottom">
-                    <div className={cx("circle")}><span><i className="fa-solid fa-upload"></i></span></div>
+                    <div className={cx("circle",{none : true})}><span><i className="fa-solid fa-upload"></i></span></div>
                  </Tippy>
                  <Tippy delay={[0, 50]} content="Cài đặt" placement="bottom">
                     <div className={cx("circle")}><span><i className="fa-solid fa-gear"></i></span></div>
                  </Tippy>
-                <div className={cx("circle")}><Image className={cx("check-btn-img")} src="https://s120-ava-talk-zmp3.zmdcdn.me/8/b/9/3/10/120/34dc3b79fce0b96839a43e2cf66ddfde.jpg" alt=""/></div>
+                <div className={cx("circle")}><Image className={cx("check-btn-img")} src="https://s120-ava-talk-zmp3.zmdcdn.me/f/5/3/c/5/120/5ba63e0a984ccedcf575e1108ed95dc8.jpg" alt=""/></div>
             </div>
      );
 }

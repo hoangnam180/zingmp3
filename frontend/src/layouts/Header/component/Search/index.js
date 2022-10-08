@@ -38,6 +38,18 @@ function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedValue])
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+          if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setActive(false)
+          }
+        }
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [searchRef]);
+      
     return (  
         <div className={cx("search")} ref={searchRef}>
                 <button className={cx("icon-search")}><i className='ti-search'></i></button>
@@ -48,7 +60,6 @@ function Search() {
                     type="text" 
                     placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..."
                     onFocus={ () => { setActive(true) } }
-                    onBlur={ () => { setActive(false) } }
                 />
                 {keywords && <button className={cx("icon-close")} onClick={()=>setKeyWord("")}><i className='ti-close'></i></button>}
                 <SuggestedAccounts active={active} data={valueResult} title={title}/>

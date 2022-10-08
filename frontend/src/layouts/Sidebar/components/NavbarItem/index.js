@@ -10,7 +10,7 @@ function NavbarItem({data,link}) {
                 link ? (
                     <Link className={cx("nav-item-link")} to={data?.path ? data.path : "/404"}>
                         <div className={data.icon || data.img ? cx("flex itemcenter") :"" }>
-                        {data.img ? <img src={data?.img}  alt="icon" /> : <span className={cx("nav-icon")}><i className={data?.icon}></i></span>}
+                        {data.img ? <img src={data?.img} className={cx(`${data.img ? "img" : "not-img"}`)} alt="icon" /> : <span className={cx("nav-icon")}><i className={data?.icon}></i></span>}
                         <span className={cx("nav-title")}>{data?.title}</span>
                         </div>
                         <span className={cx("icon-hover")}><i className='ti-control-play'></i></span>
@@ -18,7 +18,7 @@ function NavbarItem({data,link}) {
                 ) : (
                     <NavLink className={(nav) => cx('nav-item-link', { active: nav.isActive })} to={data?.path ? data.path : "/404"}>
                         <div className={data.icon || data.img ? cx("flex itemcenter") :"" }>
-                        {data.img ? <img src={data?.img}  alt="icon" /> : <span className={cx("nav-icon")}><i className={data?.icon}></i></span>}
+                        {data.img ? <img src={data?.img} className={cx(`${data.img ? "img" : "not-img"}`)} alt="icon" /> : <span className={cx("nav-icon")}><i className={data?.icon}></i></span>}
                         <span className={cx("nav-title")}>{data?.title}</span>
                         </div>
                         <span className={cx("icon-hover")}><i className='ti-control-play'></i></span>

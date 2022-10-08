@@ -16,7 +16,7 @@ function Control({
     {
     return ( 
         <div className={cx("controls")}>
-        <span className={cx("btn__control")} style={{opacity : isRandom ? 1 : .6}} onClick={handleRandom}>
+        <span className={cx("btn__control",{none : true})} style={{opacity : isRandom ? 1 : .6}} onClick={handleRandom}>
              <i className="fa-solid fa-shuffle"></i>
         </span>
         <span className={cx("btn__control")} onClick={handlePrevSong}>
@@ -34,7 +34,7 @@ function Control({
         <span className={cx("btn__control")} onClick={handleNextSong}>
              <i className="fa-solid fa-forward"></i>
         </span>
-        <span className={cx("btn__control")} style={{opacity : isRepeat ? 1 : .6}} onClick={handleRepeat}>
+        <span className={cx("btn__control",{none : true})} style={{opacity : isRepeat ? 1 : .6}} onClick={handleRepeat}>
             <i className="fa-solid fa-repeat"></i>
         </span>
     </div>

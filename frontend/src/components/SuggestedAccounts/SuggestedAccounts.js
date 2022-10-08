@@ -12,20 +12,20 @@ function SuggestedAccounts({data,active,title}) {
         <h3 className={cx("suggest-song-title")}>{title}</h3>
         <ul className={cx("suggest-song-list")}>
             {
-                !data.items ? 
+                !data?.items ? 
                 data?.map((item, index) => {
                     return <ItemRecommend key={item.keyword} data={item} icon={"fa-solid fa-arrow-trend-up"}/>
                 }) 
-                :data.items && data.items?.length > 0 && data?.items[0] && data?.items[0]?.keywords?.map((item,index)=>{
+                :data?.items && data?.items?.length > 0 && data?.items[0] && data?.items[0]?.keywords?.map((item,index)=>{
                     return <ItemRecommend key={item.keyword} data={item} icon={"ti-search"}/>
                 })
             }
         </ul>
 
-        {data.items && data.items?.length > 0 && data.items[1]?.suggestions && (
+        {data?.items && data?.items?.length > 0 && data?.items[1]?.suggestions && (
             <div className={cx("suggestion")}>
                 <h3 className={cx("suggest-song-title")}>Gợi ý kết quả</h3>
-                {data.items && data.items[1]?.suggestions?.map((item,index)=>{
+                {data?.items && data?.items[1]?.suggestions?.map((item,index)=>{
                     return (
                     <ItemMedia key={index} data={item}/>
                 )

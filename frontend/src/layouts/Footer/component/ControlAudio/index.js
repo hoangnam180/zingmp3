@@ -159,7 +159,7 @@ function ControlAudio({audioPlayer}) {
                 type="range" min="0" max="100" 
                 onInput={handleOnInput}
             />
-            <span className={cx("totalTime")} >
+            <span className={cx("totalTime")} > 
                 {formatTime(time) ? formatTime(time) : "00:00"}
             </span>
 
