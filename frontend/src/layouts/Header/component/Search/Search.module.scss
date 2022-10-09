@@ -9,8 +9,6 @@
     height: 42px;
     padding: 10px;
     position: relative;
-
-
 }
 
 .icon-search,
@@ -33,13 +31,14 @@
     width: 100%;
     z-index: 1;
     background-color: #2F2739;
+    overflow: hidden;
 
     &::placeholder {
         font-weight: 500;
     }
 
     &.active {
-        background-color: transparent;
+        background-color: var(--bg-color-search);
     }
 }
 
@@ -58,4 +57,23 @@
     font-size: 1.15rem;
     padding: 10px;
     opacity: .7;
+}
+
+@media only screen and (max-width: 736px) {
+    .search-input::placeholder {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.2rem;
+    }
+
+    .icon-search {
+        font-size: 1.4rem;
+    }
+
+    .search-input {
+        padding: 0 10px 0 30px;
+    }
 }

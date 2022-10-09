@@ -9,6 +9,17 @@
     width: 100%;
     z-index: 0;
     display: none;
+    overflow-y: scroll;
+    margin-top: 1px;
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        // background-color: var(--bg-color-search);
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 
     &.active {
         display: block;
@@ -155,5 +166,42 @@
                 }
             }
         }
+    }
+}
+
+@media only screen and (min-width: 737px) and (max-width: 1024px) {
+    .suggestSongs {
+        height: 60vh;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .suggestSongs {
+        height: 40vh;
+    }
+
+    .suggest-song-item {
+        span {
+            font-size: 1.2rem !important;
+        }
+    }
+
+    .suggest-song-title {
+        font-size: 1.2rem !important;
+    }
+
+    .media .title {
+        font-size: 1.1rem !important;
+    }
+
+    .sub-title {
+        span {
+            font-size: 1.1rem !important;
+        }
+    }
+
+    .media-left {
+        width: 40px !important;
+        height: 40px !important;
     }
 }

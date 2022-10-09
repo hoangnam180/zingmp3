@@ -37,6 +37,7 @@ router.get("/lyric", ZingController.getLyric)
 router.get("/search", ZingController.search)
 router.get("/searchrecommend", ZingController.searchRecommend)
 router.get("/searchsuggestion", ZingController.searchSuggestion)
+
 // getListMV
 router.get("/listmv", ZingController.getListMV)
 

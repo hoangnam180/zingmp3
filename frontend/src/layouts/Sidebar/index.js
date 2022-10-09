@@ -68,7 +68,7 @@ function SideBar() {
                 <ul>
                     {menuMobile.map((item,index)=>{
                         return (
-                            <li>
+                            <li key={index}>
                                 <NavLink className={(nav) => cx('nav-item-link', { active: nav.isActive })} to={item?.path ? item.path : "/404"}>
                                     <div className={item.icon || item.img ? cx("flex itemcenter") :"" }>
                                     {item.img ? <img src={item?.img} className={cx(`${item.img ? "img" : "not-img"}`)} alt="icon" /> : <span className={cx("nav-icon")}><i className={item?.icon}></i></span>}
