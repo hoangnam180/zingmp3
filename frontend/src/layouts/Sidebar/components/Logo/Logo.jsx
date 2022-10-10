@@ -6,8 +6,8 @@ const cx = classNames.bind(styles)
 function Logo() {
     return ( 
         <div className={cx("logo")}>
-            <img  src={images.logo2} alt="logo" />
-            <img className={cx("logo2")} src={images.logo1} alt="logo" style={{width : "30px"}}/>
+            <img  src={images.logo2} alt="logo" />  
+            <img  className={cx("logo2")} src={images.logo1} alt="logo" style={{width : "30px"}}/>
 
         </div>
      );

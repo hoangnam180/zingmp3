@@ -7,7 +7,7 @@ import Radio from '~/pages/Radio';
 import ZingChart from '~/pages/ZingChart';
 import Top100 from '~/pages/Top100/index';
 import MyMusic from '~/pages/MyMusic';
-import Home from '~/pages/Home/index.';
+import Home from '~/pages/Home';
 import NotFound from '~/pages/NotFound';
 
 

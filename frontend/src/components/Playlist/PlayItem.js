@@ -15,7 +15,7 @@ function PlayItem({data}) {
                         </div>
                     </div>
                     <h3 className={cx("card-name")}>{data?.title}</h3>
-                    <h5 className={cx("card-singer")}>{data?.sortDescription}</h5>
+                    <h5 className={cx("card-singer")}>{data?.sortDescription ?data?.sortDescription : data?.artistsNames}</h5>
                 </div>
     );
 }
