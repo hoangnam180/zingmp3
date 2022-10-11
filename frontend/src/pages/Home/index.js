@@ -6,14 +6,22 @@ import * as searchServices from '~/services/homeSevices';
 import Slider from './component/Slider';
 import Playlist from '~/components/Playlist';
 import ListSong from './component/ListSong';
+import Loading from '~/components/Loading';
 
 const cx = classNames.bind(style);
 
 function Home() {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        searchServices.home().then((data) => setData(data.items));
+        const fetchData = async () => {
+            setLoading(true);
+            const result = await searchServices.home();
+            setData(result.items);
+            setLoading(false);
+        };
+        fetchData();
     }, []);
 
     // dataFilter
@@ -36,23 +44,28 @@ function Home() {
 
     return (
         <div className={cx('wrapper')}>
-            <Slider data={data} />
-
-            {/* new-release */}
-            {dataFilter.length > 0 &&
-                dataFilter.map((item, index) => {
-                    if (item?.title && item.sectionType !== 'new-release' && item.sectionId !== 'hNewrelease') {
-                        return <Playlist key={item?.id} title={item.title} data={item.items} />;
-                    } else if (item?.sectionId === 'hNewrelease') {
-                        return <Playlist key={item.id} type={true} data={item.items} title={item.title} />;
-                    } else if (item.sectionId === 'hAlbum') {
-                        console.log(item);
-                        return <Playlist key={item.id} data={item.items} />;
-                    } else if (item?.sectionType === 'new-release') {
-                        return <ListSong key={item?.id} data={item.items[0]} title={item.title} />;
-                    } else {
-                    }
-                })}
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Slider data={data} />
+                    {/* new-release */}
+                    {dataFilter.length > 0 &&
+                        dataFilter.map((item, index) => {
+                            if (item?.title && item.sectionType !== 'new-release' && item.sectionId !== 'hNewrelease') {
+                                return <Playlist key={item?.id} title={item.title} data={item.items} />;
+                            } else if (item?.sectionId === 'hNewrelease') {
+                                return <Playlist key={item.id} type={true} data={item.items} title={item.title} />;
+                            } else if (item.sectionId === 'hAlbum') {
+                                console.log(item);
+                                return <Playlist key={item.id} data={item.items} />;
+                            } else if (item?.sectionType === 'new-release') {
+                                return <ListSong key={item?.id} data={item.items[0]} title={item.title} />;
+                            } else {
+                            }
+                        })}
+                </>
+            )}
         </div>
     );
 }

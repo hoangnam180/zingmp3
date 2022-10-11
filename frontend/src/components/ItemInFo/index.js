@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+
+import React from 'react';
 import styles from './ItemInFo.module.scss';
 import Image from '~/components/Image';
-import { formatTime } from '~/utils/formatTime';
+
 function toDateTime(time) {
     const newTime = new Date(Number(time));
     return newTime.getDay();
 }
 const cx = classNames.bind(styles);
+
 function ItemInFo({ data }) {
     return (
         <li className={cx('info')}>
@@ -27,4 +30,4 @@ function ItemInFo({ data }) {
 ItemInFo.propTypes = {
     data: PropTypes.object,
 };
-export default ItemInFo;
+export default React.memo(ItemInFo);

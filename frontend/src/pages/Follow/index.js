@@ -1,7 +1,7 @@
+import Loading from '~/components/Loading';
+
 function Follow() {
-    return (  
-        <>Follow</>
-    );
+    return <Loading />;
 }
 
 export default Follow;
