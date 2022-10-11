@@ -1,29 +1,55 @@
-import DefaultLayout from "~/layouts/index"
+import DefaultLayout from '~/layouts/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 
 function App() {
     return (
         <Router>
-        <div className="App">
-            <Routes>
-                {publicRoutes.map((route, index) => {
-                    const Page = route.component;
-                    return (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={
-                                <DefaultLayout>
-                                    <Page />
-                                </DefaultLayout>
-                            }
-                        />
-                    );
-                })}
-            </Routes>
-        </div>
-    </Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        if (!route.children) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <DefaultLayout>
+                                            <Page />
+                                        </DefaultLayout>
+                                    }
+                                />
+                            );
+                        } else {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <DefaultLayout>
+                                            <Page />
+                                        </DefaultLayout>
+                                    }
+                                >
+                                    {route?.children.map((item) => (
+                                        <Route
+                                            key={index}
+                                            path={item.path}
+                                            element={
+                                                <DefaultLayout>
+                                                    <Page />
+                                                </DefaultLayout>
+                                            }
+                                        />
+                                    ))}
+                                </Route>
+                            );
+                        }
+                    })}
+                </Routes>
+            </div>
+        </Router>
     );
 }
 

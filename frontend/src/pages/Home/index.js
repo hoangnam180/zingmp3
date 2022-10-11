@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
 import style from './Home.module.scss';
-import * as searchServices from '~/services/homeSevices';
+import * as searchServices from '~/services/home.sevices';
 import Slider from './component/Slider';
 import Playlist from '~/components/Playlist';
 import ListSong from './component/ListSong';
@@ -40,7 +40,6 @@ function Home() {
                 return item;
             });
     // temp Page
-    console.log(dataFilter);
 
     return (
         <div className={cx('wrapper')}>
@@ -57,7 +56,6 @@ function Home() {
                             } else if (item?.sectionId === 'hNewrelease') {
                                 return <Playlist key={item.id} type={true} data={item.items} title={item.title} />;
                             } else if (item.sectionId === 'hAlbum') {
-                                console.log(item);
                                 return <Playlist key={item.id} data={item.items} />;
                             } else if (item?.sectionType === 'new-release') {
                                 return <ListSong key={item?.id} data={item.items[0]} title={item.title} />;

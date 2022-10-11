@@ -1,7 +1,5 @@
 function ZingChar() {
-    return (  
-        <>ZingChar</>
-    );
+    return <>ZingChar</>;
 }
 
 export default ZingChar;

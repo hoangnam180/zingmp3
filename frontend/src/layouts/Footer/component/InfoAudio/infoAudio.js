@@ -14,7 +14,7 @@ function InfoAudio() {
     return (
         <div className={cx('footer-left')}>
             <div className={cx('footer-img')}>
-                <Image src={data[currentIndex]?.thumbnail} alt="info" />
+                <Image src={data[currentIndex]?.thumbnailM} alt="info" />
                 <div className={cx('footer-img-play', { active: isPlay })}></div>
             </div>
             <div className={cx('footer-info')}>

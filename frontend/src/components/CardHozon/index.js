@@ -9,7 +9,7 @@ function CardHozon({ data, index }) {
     return (
         <div className={cx('card-hozon')}>
             <div className={cx('img')}>
-                <img src={data?.album?.thumbnail} />
+                <img src={data?.album?.thumbnailM} />
             </div>
             <div className={cx('about')}>
                 <div>

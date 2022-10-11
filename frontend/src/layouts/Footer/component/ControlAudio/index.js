@@ -62,15 +62,16 @@ function ControlAudio({ audioPlayer }) {
     };
 
     // next_song
-    const handleNextSong = () => {
-        resetEventSong();
+    const handleNextSong = (type) => {
         if (isRandom) {
             playRandomSong();
         } else {
             if (currentIndex >= data.length - 1) {
                 dispatch(setCurrentIndex(0));
-                dispatch(setIsPlay(false));
-                resetEventSong();
+                if (type === 'ended') {
+                    dispatch(setIsPlay(false));
+                    resetEventSong();
+                }
             } else {
                 dispatch(setCurrentIndex(currentIndex + 1));
             }
@@ -79,7 +80,6 @@ function ControlAudio({ audioPlayer }) {
 
     //prev_song
     const handlePrevSong = () => {
-        resetEventSong();
         if (isRandom) {
             playRandomSong();
         } else {
@@ -118,7 +118,7 @@ function ControlAudio({ audioPlayer }) {
         } else if (isRandom) {
             playRandomSong();
         } else {
-            handleNextSong();
+            handleNextSong('ended');
         }
         resetEventSong();
     };

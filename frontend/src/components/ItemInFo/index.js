@@ -15,7 +15,7 @@ function ItemInFo({ data }) {
     return (
         <li className={cx('info')}>
             <div className={cx('media-left')}>
-                <Image src={data.thumbnail} alt="avatar" />
+                <Image src={data.thumbnailM} alt="avatar" />
             </div>
             <div className={cx('media')}>
                 <h4 className={cx('title')}>{data?.title}</h4>
