@@ -23,10 +23,10 @@ function ListSong({ title, data }) {
     };
 
     const dataHook = useData(id);
-
+    console.log(dataHook);
     useEffect(() => {
         if (id) {
-            dispatch(setData(dataHook));
+            dispatch(setData([{ ...dataHook }]));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataHook]);

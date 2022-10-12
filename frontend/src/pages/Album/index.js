@@ -5,13 +5,23 @@ import * as albumSevices from '~/services/album.sevices';
 import { useParams } from 'react-router-dom';
 import { formatTime } from '~/utils/formatTime';
 import style from './Album.module.scss';
+import useData from '~/hooks/useData';
+import { useDispatch, useSelector } from 'react-redux';
+import { setData } from '~/redux/actions/audio';
 
 const cx = classNames.bind(style);
 
 function Albums() {
     const [album, setAlbum] = useState();
-
+    const dispatch = useDispatch();
+    const handleAlbum = () => {
+        dispatch(setData(album?.song?.items));
+    };
     let params = useParams();
+    const data = useSelector((state) => state.audio.data);
+    const currentIndex = useSelector((state) => state.audio.currentIndex);
+
+    const dataHook = useData(data[currentIndex]?.encodeId);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -45,7 +55,11 @@ function Albums() {
                 </div>
                 {album &&
                     album?.song?.items?.map((item) => (
-                        <div key={item?.encodeId} className={cx('list-album-item', { songActive: false })}>
+                        <div
+                            key={item?.encodeId}
+                            className={cx('list-album-item', { songActive: false })}
+                            onClick={handleAlbum}
+                        >
                             <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                                     <span className={cx('list-album-header-icon')}></span>
