@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind';
-import { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsPlay, setCurrentIndex, setIsRepeat, setIsRandom } from '~/redux/actions/audio';
+import { setIsPlay, setCurrentIndex, setIsRepeat, setIsRandom, setCurrentSong } from '~/redux/actions/audio';
 import PropTypes from 'prop-types';
 
 import style from '~/layouts/Footer/Footer.module.scss';
 import { formatTime } from '~/utils/formatTime';
 import Control from './component/Control';
+import useData from '~/hooks/useData';
 
 const cx = classNames.bind(style);
 
@@ -19,13 +20,18 @@ function ControlAudio({ audioPlayer }) {
     const isPlay = useSelector((state) => state.audio.isPlaying);
     const data = useSelector((state) => state.audio.data);
     const currentIndex = useSelector((state) => state.audio.currentIndex);
+    const currentSong = useSelector((state) => state.audio.currentSong);
     const isRepeat = useSelector((state) => state.audio.isRepeat);
     const isRandom = useSelector((state) => state.audio.isRandom);
-
+    const dataSong = useData(data[currentIndex]?.encodeId);
     // state local
     const [time, setTime] = useState(0);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setCurrentSong(dataSong));
+    }, [currentIndex, dispatch, dataSong]);
 
     //resetElement
     const resetEventSong = () => {
@@ -164,7 +170,7 @@ function ControlAudio({ audioPlayer }) {
                 {/* audio */}
                 <audio
                     id="audio"
-                    src={data[currentIndex]?.url}
+                    src={currentSong?.url}
                     ref={audioPlayer}
                     onTimeUpdate={handleOnupdate}
                     onEnded={handleOnEnded}
@@ -177,4 +183,4 @@ function ControlAudio({ audioPlayer }) {
 ControlAudio.propTypes = {
     audioPlayer: PropTypes.any,
 };
-export default ControlAudio;
+export default React.memo(ControlAudio);

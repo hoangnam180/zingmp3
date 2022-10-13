@@ -23,6 +23,12 @@ export const setIsRandom = (isRandom) => {
         payload: isRandom,
     };
 };
+export const setCurrentSong = (song) => {
+    return {
+        type: 'SET_CURRENT_SONG',
+        payload: song,
+    };
+};
 export const setData = (data) => {
     return {
         type: 'SET_DATA',

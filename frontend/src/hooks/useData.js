@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import * as songSevices from '~/services/song.sevices';
 
 function useData(value = '') {
+    const dispatch = useDispatch();
     const [data, setData] = useState({});
 
     useEffect(() => {
@@ -16,7 +19,7 @@ function useData(value = '') {
             }
         };
         fetchData();
-    }, [value]);
+    }, [value, dispatch]);
 
     return data;
 }

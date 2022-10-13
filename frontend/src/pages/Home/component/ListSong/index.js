@@ -1,35 +1,28 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setData } from '~/redux/actions/audio';
+import { setCurrentIndex, setData } from '~/redux/actions/audio';
 import style from './ListSong.module.scss';
 import ItemInFo from '~/components/ItemInFo';
-import useData from '~/hooks/useData';
 const cx = classNames.bind(style);
 
 function ListSong({ title, data }) {
     let navigate = useNavigate();
     const [tab, setTab] = useState('song');
-    const [id, setId] = useState(data[tab][0]?.encodeId || '');
     const dispatch = useDispatch();
 
     const handlePlaylist = (id) => {
-        if (tab === 'song') setId(id);
-        else {
+        if (tab === 'song') {
+            const index = data[tab]?.findIndex((item) => item?.encodeId === id);
+            dispatch(setData(data[tab]));
+            dispatch(setCurrentIndex(index));
+        } else {
+            dispatch(setCurrentIndex(0));
             navigate(`/album/${id}`);
         }
     };
-
-    const dataHook = useData(id);
-    console.log(dataHook);
-    useEffect(() => {
-        if (id) {
-            dispatch(setData([{ ...dataHook }]));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataHook]);
 
     return (
         <div className="grid wide">
@@ -58,7 +51,7 @@ function ListSong({ title, data }) {
                                 key={item.encodeId}
                                 className="col c-6 l-4 l-2-4"
                             >
-                                <ItemInFo key={item?.encodeId} data={item} />
+                                <ItemInFo key={item?.encodeId} data={item} index={index} />
                             </div>
                         );
                 })}

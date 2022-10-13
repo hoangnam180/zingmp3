@@ -1,11 +1,23 @@
 import classNames from 'classnames/bind';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+import { setCurrentIndex } from '~/redux/actions/audio';
 import style from './Playlist.module.scss';
 
 const cx = classNames.bind(style);
 function PlayItem({ data }) {
+    const dispatch = useDispatch();
+    const navigator = useNavigate();
     return (
-        <div className={cx('card')}>
+        <div
+            className={cx('card')}
+            onClick={() => {
+                navigator(`/album/${data?.encodeId}`);
+                dispatch(setCurrentIndex(0));
+            }}
+        >
             <div className={cx('images')}>
                 <img src={data?.thumbnailM} alt="playlist" />
                 <div className={cx('media')}>
@@ -25,5 +37,7 @@ function PlayItem({ data }) {
         </div>
     );
 }
-
+PlayItem.propTypes = {
+    data: PropTypes.object,
+};
 export default PlayItem;

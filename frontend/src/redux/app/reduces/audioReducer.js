@@ -1,9 +1,10 @@
 const initialState = {
-    data: [],
+    data: JSON.parse(localStorage.getItem('listSong')) || [],
     isPlaying: false,
     isRepeat: false,
     isRandom: false,
-    currentIndex: 0,
+    currentIndex: JSON.parse(localStorage.getItem('currentIndex')) || 0,
+    currentSong: {},
 };
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -20,6 +21,7 @@ const todoReducer = (state = initialState, action) => {
             };
         }
         case 'SET_INDEX': {
+            localStorage.setItem('currentIndex', JSON.stringify(action.payload));
             return {
                 ...state,
                 currentIndex: action.payload,
@@ -31,11 +33,21 @@ const todoReducer = (state = initialState, action) => {
                 isRandom: action.payload,
             };
         }
-        case 'SET_DATA': {
+        case 'SET_CURRENT_SONG': {
             return {
                 ...state,
-                data: [...action.payload],
+                currentSong: action.payload,
             };
+        }
+        case 'SET_DATA': {
+            if (action.payload) {
+                localStorage.setItem('listSong', JSON.stringify(action.payload));
+                return {
+                    ...state,
+                    data: [...action.payload],
+                };
+            }
+            return state;
         }
         default: {
             return state;

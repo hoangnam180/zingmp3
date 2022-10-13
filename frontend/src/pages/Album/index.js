@@ -5,32 +5,32 @@ import * as albumSevices from '~/services/album.sevices';
 import { useParams } from 'react-router-dom';
 import { formatTime } from '~/utils/formatTime';
 import style from './Album.module.scss';
-import useData from '~/hooks/useData';
 import { useDispatch, useSelector } from 'react-redux';
-import { setData } from '~/redux/actions/audio';
+import { setCurrentIndex, setData } from '~/redux/actions/audio';
 
 const cx = classNames.bind(style);
 
 function Albums() {
     const [album, setAlbum] = useState();
+
     const dispatch = useDispatch();
-    const handleAlbum = () => {
-        dispatch(setData(album?.song?.items));
-    };
-    let params = useParams();
-    const data = useSelector((state) => state.audio.data);
+
+    const params = useParams();
+
     const currentIndex = useSelector((state) => state.audio.currentIndex);
 
-    const dataHook = useData(data[currentIndex]?.encodeId);
+    const handleAlbum = (index) => {
+        dispatch(setCurrentIndex(index));
+    };
 
     useEffect(() => {
         const fetchApi = async () => {
             const result = await albumSevices.albums(params?.id);
-            console.log(result);
             setAlbum(result);
+            dispatch(setData(result?.song?.items));
         };
         fetchApi();
-    }, [params]);
+    }, [params, dispatch]);
     return (
         <div className={cx('album ')}>
             <div className={cx('album__detail-img')}>
@@ -54,11 +54,11 @@ function Albums() {
                     <span className={cx('list-albums-time')}>THỜI GIAN</span>
                 </div>
                 {album &&
-                    album?.song?.items?.map((item) => (
+                    album?.song?.items?.map((item, index) => (
                         <div
                             key={item?.encodeId}
-                            className={cx('list-album-item', { songActive: false })}
-                            onClick={handleAlbum}
+                            className={cx('list-album-item', { songActive: index === currentIndex })}
+                            onClick={() => handleAlbum(index)}
                         >
                             <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>

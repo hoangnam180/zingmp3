@@ -50,7 +50,7 @@ function Home() {
                     <Slider data={data} />
                     {/* new-release */}
                     {dataFilter.length > 0 &&
-                        dataFilter.map((item, index) => {
+                        dataFilter.map((item) => {
                             if (item?.title && item.sectionType !== 'new-release' && item.sectionId !== 'hNewrelease') {
                                 return <Playlist key={item?.id} title={item.title} data={item.items} />;
                             } else if (item?.sectionId === 'hNewrelease') {

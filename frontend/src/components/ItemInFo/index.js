@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './ItemInFo.module.scss';
 import Image from '~/components/Image';
+import { useSelector } from 'react-redux';
 
 function toDateTime(time) {
     const newTime = new Date(Number(time));
@@ -11,9 +12,10 @@ function toDateTime(time) {
 }
 const cx = classNames.bind(styles);
 
-function ItemInFo({ data }) {
+function ItemInFo({ data, index }) {
+    const currentIndex = useSelector((state) => state.audio.currentIndex);
     return (
-        <li className={cx('info')}>
+        <li className={cx('info', { active: index === currentIndex })}>
             <div className={cx('media-left')}>
                 <Image src={data.thumbnailM} alt="avatar" />
             </div>
@@ -29,5 +31,6 @@ function ItemInFo({ data }) {
 }
 ItemInFo.propTypes = {
     data: PropTypes.object,
+    index: PropTypes.number,
 };
 export default React.memo(ItemInFo);
