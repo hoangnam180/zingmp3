@@ -19,8 +19,8 @@ function ListSong({ title, data }) {
             dispatch(setData(data[tab]));
             dispatch(setCurrentIndex(index));
         } else {
-            dispatch(setCurrentIndex(0));
             navigate(`/album/${id}`);
+            dispatch(setCurrentIndex(0));
         }
     };
 

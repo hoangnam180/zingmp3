@@ -31,7 +31,7 @@ function ControlAudio({ audioPlayer }) {
 
     useEffect(() => {
         dispatch(setCurrentSong(dataSong));
-    }, [currentIndex, dispatch, dataSong]);
+    }, [dispatch, dataSong]);
 
     //resetElement
     const resetEventSong = () => {

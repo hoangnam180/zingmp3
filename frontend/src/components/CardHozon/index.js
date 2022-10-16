@@ -1,13 +1,24 @@
 import classNames from 'classnames/bind';
 
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setCurrentIndex } from '~/redux/actions/audio';
 import style from './CardHozon.module.scss';
 
 const cx = classNames.bind(style);
 
 function CardHozon({ data, index }) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     return (
-        <div className={cx('card-hozon')}>
+        <div
+            className={cx('card-hozon')}
+            onClick={() => {
+                dispatch(setCurrentIndex(0));
+                navigate(`album/${data?.encodeId}`);
+            }}
+        >
             <div className={cx('img')}>
                 <img src={data?.album?.thumbnail} alt="thumbnail" />
             </div>
