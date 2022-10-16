@@ -1,129 +1,59 @@
 import './Radio.scss';
 import img from '~/assets/imgs';
 import CardItem from '~/components/CardItem';
-
-const airRadio = [
-    {
-        id: 1,
-        name: 'Nhạc mới mỗi ngày',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 2,
-        name: "Artist's story",
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-
-    {
-        id: 3,
-        name: 'Wazzup',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 4,
-        name: 'Chạm x sao',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-];
-
-const newRadio = [
-    {
-        id: 1,
-        name: 'Khi em lớn',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 2,
-        name: 'All about Women',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-
-    {
-        id: 3,
-        name: 'Thủ thỉ thầm thì',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 4,
-        name: 'Đàn ông học',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-];
-const radio = [
-    {
-        id: 1,
-        title: 'XONE Radio',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 2,
-        title: 'V-POP',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-
-    {
-        id: 3,
-        title: 'On Air',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 4,
-        title: 'Bolero',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-    {
-        id: 5,
-        title: 'Chạm',
-        image: 'https://mp3-react-vinhbuihd.vercel.app/images/radio-5.jpg',
-    },
-];
+import { useEffect } from 'react';
+import * as radioSevices from '~/services/radio.sevices';
+import { useState } from 'react';
+import Playlist from '~/components/Playlist';
+import Loading from '~/components/Loading';
 
 const Radio = () => {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            const result = await radioSevices.radio();
+            setData(result.items);
+            setLoading(false);
+        };
+        fetchData();
+    }, []);
+    const dataPodcast = data.filter((item) => item.sectionType === 'podcast');
     return (
-        <div className="radio home">
-            <div className="card-list-group">
-                <div className="row">
-                    {radio.map((list) => (
-                        <div className="col c-6 m-4 l-2-4" key={list.id}>
-                            <div className="radio-box" key={list.id}>
-                                <div className="radio-top">
-                                    <img className="radio-top-img" src={img.radio1} alt="radio" />
-                                    <img
-                                        className="radio-top-live-icon"
-                                        src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/live-tag.svg"
-                                        alt="live"
-                                    />
-                                    <CardItem data={list} />
+        <>
+            {!loading ? (
+                <div className="radio home">
+                    <div className="row-radio">
+                        {data &&
+                            data.length > 0 &&
+                            data[0].items.map((list) => (
+                                <div className="col-radio" key={list.encodeId}>
+                                    <div className="radio-box">
+                                        <div className="radio-top">
+                                            <img className="radio-top-img" src={img.radio1} alt="radio" />
+                                            <img
+                                                className="radio-top-live-icon"
+                                                src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/live-tag.svg"
+                                                alt="live"
+                                            />
+                                            <CardItem data={list} card={false} />
+                                        </div>
+                                        <div className="radio-bottom">{list.title}</div>
+                                    </div>
                                 </div>
-                                <div className="radio-bottom">{list.title}</div>
-                            </div>
-                        </div>
-                    ))}
+                            ))}
+                    </div>
+                    {dataPodcast &&
+                        dataPodcast.length > 0 &&
+                        dataPodcast.map((item, index) => {
+                            return <Playlist key={index} title={item.title} data={item.items} />;
+                        })}
                 </div>
-            </div>
-
-            <div className="card-list-group">
-                <h3 className="h3-heading">On Air</h3>
-                <div className="row">
-                    {airRadio.map((list) => (
-                        <div className="col c-6 m-4 l-3" key={list.id}>
-                            <CardItem data={list} />
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className="card-list-group">
-                <h3 className="h3-heading">Chương Trình Mới</h3>
-                <div className="row">
-                    {newRadio.map((list) => (
-                        <div className="col c-6 m-4 l-3" key={list.id}>
-                            <CardItem data={list} />
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+            ) : (
+                <Loading />
+            )}
+        </>
     );
 };
 

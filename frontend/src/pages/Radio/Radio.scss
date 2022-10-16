@@ -2,12 +2,12 @@
     .radio-top {
         position: relative;
         padding: 4px;
-
         .radio-top-img {
             position: absolute;
             top: 0;
             right: 0;
             left: 0;
+            width: 100%;
         }
         .radio-top-live-icon {
             position: absolute;
@@ -32,4 +32,11 @@
         font-size: 16px;
         font-weight: 700;
     }
+}
+.row-radio {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 150px);
+    display: flex;
+    flex-wrap: nowrap;
 }

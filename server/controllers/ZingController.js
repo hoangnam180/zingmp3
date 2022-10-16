@@ -19,6 +19,11 @@ class ZingController {
       res.json(data);
     });
   }
+  getRadio(req, res) {
+    zing.get_radio().then((data) => {
+      res.json(data);
+    });
+  }
 
   getTop100(req, res) {
     ZingMp3.getTop100().then((data) => {
