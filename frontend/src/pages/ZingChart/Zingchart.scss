@@ -29,11 +29,8 @@
 .zing-chart-playlist {
     margin: 32px 0;
     .playlist-item {
-        // border-bottom: 1px solid #ffffff0d;
+        border-bottom: 1px solid #ffffff0d;
         display: flex;
-        &:hover {
-            // background-color: var(--background-white);
-        }
         .playlist-position {
             font-weight: 900;
             font-family: 'Roboto', sans-serif;

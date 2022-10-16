@@ -1,39 +1,20 @@
-.footer-playlist-content {
-    background-color: var(--bg-color-show-list-song);
-    bottom: var(--default-height-footer);
-    color: var(--white);
-    height: calc(100vh - var(--default-height-footer));
-    overflow-y: auto;
-    position: absolute;
-    right: 0;
-    transition: all 0.5s ease-in-out;
-    width: 38vh;
-    z-index: 100;
-    opacity: 0;
-    -webkit-transform: translateX(101%);
-    transform: translateX(101%);
-
-    &.active {
-        opacity: 1;
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-}
-
 .list-album-item {
     padding-left: 10px;
     width: 100%;
     align-items: center;
-    border-bottom: 1px solid #64646475;
     border-radius: 5px;
     color: var(--color-text-detail);
     cursor: pointer;
     display: flex;
+    justify-content: space-between;
     font-size: 13px;
     font-weight: 600;
     min-height: 60px;
     position: relative;
     text-decoration: none;
+    &.border {
+        border-bottom: 1px solid #64646475;
+    }
 
     &.active {
         background-color: var(--color-default-secondary);
@@ -65,6 +46,9 @@
     margin-left: 10px;
     overflow: hidden;
 }
+.detail.duration {
+    flex: 0.38 1;
+}
 
 .detail-artist,
 .detail-title-name {
@@ -73,7 +57,10 @@
     display: -webkit-box;
     overflow: hidden;
 }
-
+.detail-artist.time {
+    text-align: right;
+    margin-right: 10px;
+}
 .detail-title {
     color: var(--white);
     display: flex;

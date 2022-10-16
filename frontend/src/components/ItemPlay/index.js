@@ -1,29 +1,49 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
 import style from './PlaylistContent.module.scss';
+import { formatTime } from '~/utils/formatTime';
 
 const cx = classNames.bind(style);
 
-function ItemPlay() {
+function ItemPlay({ data, index, duration, border = true, handleOnClick = () => {} }) {
+    const currentIndex = useSelector((state) => state.audio.currentIndex);
     return (
-        <div className={cx('list-album-item', { active: false })}>
-            <div className={cx('list-album-song-name', { 'song-album-item': true })}>
+        <div className={cx('list-album-item', { active: index === currentIndex, border: border })}>
+            <div
+                className={cx('list-album-song-name', { 'song-album-item': true })}
+                onClick={() => handleOnClick(data?.encodeId, index)}
+            >
                 <div className="flex itemcenter">
                     <span className={cx('list-album-header-icon')}>{/* <i className="ti-music-alt"></i> */}</span>
-                    <img
-                        className={cx('song-album-item-img')}
-                        src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_jpeg/cover/2/8/9/2/2892c3530e93895b6605cea040c749e0.jpg"
-                        alt="info"
-                    />
+                    <img className={cx('song-album-item-img')} src={data?.thumbnailM} alt="info" />
                 </div>
                 <div className={cx('detail')}>
                     <div className={cx('detail-title')}>
-                        <span className={cx('detail-title-name')}>Có Chơi Có Chịu</span>
+                        <span className={cx('detail-title-name')}>{data?.title}</span>
                     </div>
-                    <span className={cx('detail-artist')}>Karik, Only C</span>
+                    <span className={cx('detail-artist')}>{data?.artistsNames}</span>
                 </div>
             </div>
+            {duration && (
+                <>
+                    <div className={cx('detail', { duration })}>
+                        <span className={cx('detail-artist')}>{data?.album?.title}</span>
+                    </div>
+                    <div className={cx('detail', { duration })}>
+                        <span className={cx('detail-artist', { time: true })}>{formatTime(data?.duration)}</span>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
-
+ItemPlay.propTypes = {
+    data: PropTypes.object,
+    index: PropTypes.number,
+    border: PropTypes.bool,
+    duration: PropTypes.bool,
+    handleOnClick: PropTypes.func,
+};
 export default ItemPlay;

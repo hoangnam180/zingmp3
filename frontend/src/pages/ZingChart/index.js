@@ -5,12 +5,17 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import './Zingchart.scss';
 import LineChart from '~/components/LineChart';
 import * as chartSevices from '~/services/chart.sevices';
+import ItemPlay from '~/components/ItemPlay';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentIndex, setData as setDataRedux } from '~/redux/actions/audio';
+import Loading from '~/components/Loading';
 // import ItemPlay from '~/layouts/Footer/component/PlaylistContent/ItemPlay';
 
 function ZingChar() {
     const [data, setData] = useState([]);
+    const dataSong = useSelector((state) => state.audio.data);
     const [loading, setLoading] = useState(false);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -41,33 +46,52 @@ function ZingChar() {
             }
         });
 
-    // return <>{!loading ? <LineChart label={label} dataChart={dataChart} /> : <Loading />}</>;
+    const handleClickItem = (encodeId, index) => {
+        const indexFilter = dataSong.findIndex((item) => item?.encodeId === encodeId);
+        dispatch(setCurrentIndex(indexFilter));
+        dispatch(setDataRedux(data?.RTChart?.items));
+    };
     return (
-        <div className="zing-chart home">
-            <div className="align-items-center d-flex">
-                <h3 className="zing-chart-heading">#zingchart</h3>
-                <div className="zing-chart-play-icon">
-                    <BsFillPlayFill />
-                </div>
-            </div>
-
-            <div className="chart" style={{ height: '400px' }}>
-                <LineChart label={label} dataChart={dataChart} />
-            </div>
-
-            <div className="zing-chart-playlist">
-                {data?.RTChart?.items &&
-                    data?.RTChart?.items.map((item, index) => (
-                        <div className="playlist-item d-flex align-items-center" key={item.encodeId}>
-                            <div className={`playlist-position top-${index + 1}`}>{index + 1}</div>
-                            <div className="playlist-line">
-                                <AiOutlineLine />
-                            </div>
-                            {/* <ItemPlay data={item} border={false}/> */}
+        <>
+            {loading ? (
+                <Loading />
+            ) : (
+                <div className="zing-chart home">
+                    <div className="align-items-center d-flex">
+                        <h3 className="zing-chart-heading">#zingchart</h3>
+                        <div className="zing-chart-play-icon">
+                            <BsFillPlayFill />
                         </div>
-                    ))}
-            </div>
-        </div>
+                    </div>
+
+                    <div className="chart" style={{ height: '400px' }}>
+                        <LineChart label={label} dataChart={dataChart} />
+                    </div>
+
+                    <div className="zing-chart-playlist">
+                        {data?.RTChart?.items &&
+                            data?.RTChart?.items.map(
+                                (item, index) =>
+                                    index <= 9 && (
+                                        <div className="playlist-item d-flex align-items-center" key={item.encodeId}>
+                                            <div className={`playlist-position top-${index + 1}`}>{index + 1}</div>
+                                            <div className="playlist-line">
+                                                <AiOutlineLine />
+                                            </div>
+                                            <ItemPlay
+                                                data={item}
+                                                border={false}
+                                                duration={true}
+                                                handleOnClick={handleClickItem}
+                                                index={index}
+                                            />
+                                        </div>
+                                    ),
+                            )}
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
 

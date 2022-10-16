@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentIndex } from '~/redux/actions/audio';
 
 import * as songSevices from '~/services/song.sevices';
 
 function useData(value = '') {
     const dispatch = useDispatch();
     const [data, setData] = useState({});
-
+    const currentIndex = useSelector((state) => state.audio.currentIndex);
     useEffect(() => {
         const fetchData = async () => {
             if (!value) return;
@@ -16,6 +17,7 @@ function useData(value = '') {
                 setData(newResult);
             } else {
                 alert('Bài hát này hiện không khả dụng');
+                dispatch(setCurrentIndex(currentIndex + 1));
             }
         };
         fetchData();
