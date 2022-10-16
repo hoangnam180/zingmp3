@@ -47,8 +47,7 @@ function ZingChar() {
         });
 
     const handleClickItem = (encodeId, index) => {
-        const indexFilter = dataSong.findIndex((item) => item?.encodeId === encodeId);
-        dispatch(setCurrentIndex(indexFilter));
+        dispatch(setCurrentIndex(index));
         dispatch(setDataRedux(data?.RTChart?.items));
     };
     return (

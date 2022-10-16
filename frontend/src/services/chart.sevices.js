@@ -8,3 +8,11 @@ export const chartHome = async () => {
         console.log(error);
     }
 };
+export const newReleaseChart = async () => {
+    try {
+        const res = await httpRequest.get('/newreleasechart');
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

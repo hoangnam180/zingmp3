@@ -9,12 +9,16 @@ const cx = classNames.bind(style);
 
 function ItemPlay({ data, index, duration, border = true, handleOnClick = () => {} }) {
     const currentIndex = useSelector((state) => state.audio.currentIndex);
+    const dataRedux = useSelector((state) => state.audio.data);
     return (
-        <div className={cx('list-album-item', { active: index === currentIndex, border: border })}>
-            <div
-                className={cx('list-album-song-name', { 'song-album-item': true })}
-                onClick={() => handleOnClick(data?.encodeId, index)}
-            >
+        <div
+            className={cx('list-album-item', {
+                active: data.encodeId === dataRedux[currentIndex].encodeId && index === currentIndex,
+                border: border,
+            })}
+            onClick={() => handleOnClick(data?.encodeId, index)}
+        >
+            <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                 <div className="flex itemcenter">
                     <span className={cx('list-album-header-icon')}>{/* <i className="ti-music-alt"></i> */}</span>
                     <img className={cx('song-album-item-img')} src={data?.thumbnailM} alt="info" />

@@ -1,7 +1,9 @@
-import Loading from '~/components/Loading';
-
 function Follow() {
-    return <h1>Chức năng này hiện chưa hoạt động</h1>;
+    return (
+        <h2 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '20vh' }}>
+            Chưa có chức năng này. Vui lòng quay lại sau!
+        </h2>
+    );
 }
 
 export default Follow;

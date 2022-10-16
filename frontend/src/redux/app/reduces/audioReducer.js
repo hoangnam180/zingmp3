@@ -3,7 +3,8 @@ const initialState = {
     isPlaying: false,
     isRepeat: false,
     isRandom: false,
-    currentIndex: JSON.parse(localStorage.getItem('currentIndex')) || 0,
+    currentIndex:
+        (localStorage.getItem('currentIndex') !== null && JSON.parse(localStorage.getItem('currentIndex'))) || 0,
     currentSong: {},
 };
 const todoReducer = (state = initialState, action) => {
@@ -21,7 +22,7 @@ const todoReducer = (state = initialState, action) => {
             };
         }
         case 'SET_INDEX': {
-            localStorage.setItem('currentIndex', JSON.stringify(action.payload));
+            if (action.payload === 'number') localStorage.setItem('currentIndex', JSON.stringify(action.payload));
             return {
                 ...state,
                 currentIndex: action.payload,
