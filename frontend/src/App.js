@@ -32,17 +32,17 @@ function App() {
                                         </DefaultLayout>
                                     }
                                 >
-                                    {route?.children.map((item) => (
-                                        <Route
-                                            key={index}
-                                            path={item.path}
-                                            element={
-                                                <DefaultLayout>
-                                                    <Page />
-                                                </DefaultLayout>
-                                            }
-                                        />
-                                    ))}
+                                    {route?.children.map((item, index) => {
+                                        const PageChild = item?.component;
+                                        return (
+                                            <Route
+                                                key={index}
+                                                index={item?.index}
+                                                path={item?.path}
+                                                element={<PageChild />}
+                                            />
+                                        );
+                                    })}
                                 </Route>
                             );
                         }

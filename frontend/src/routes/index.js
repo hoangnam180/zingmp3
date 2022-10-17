@@ -10,12 +10,26 @@ import MyMusic from '~/pages/MyMusic';
 import Home from '~/pages/Home';
 import NotFound from '~/pages/NotFound';
 import Albums from '~/pages/Album';
+import Song from '~/pages/MyMusic/Song';
+import PodCast from '~/pages/MyMusic/Podcast';
+import Album from '~/pages/MyMusic/Album';
+import MyMusicMv from '~/pages/MyMusic/MyMusicMv';
 
 // Public routes
 const publicRoutes = [
     { path: config.index, component: Home },
     { path: config.home, component: Home },
-    { path: config.my_music, component: MyMusic },
+    {
+        path: config.my_music,
+        component: MyMusic,
+        children: [
+            { index: true, path: null, component: Song },
+            { path: 'song', component: Song },
+            { path: 'podcast', component: PodCast },
+            { path: 'album', component: Album },
+            { path: 'mymusicmv', component: MyMusicMv },
+        ],
+    },
     { path: config.zing_chart, component: ZingChart },
     { path: config.radio, component: Radio },
     { path: config.follow, component: Follow },

@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+
 import ItemPlay from '~/components/ItemPlay';
 import { setCurrentIndex } from '~/redux/actions/audio';
 import style from './PlaylistContent.module.scss';
 
 const cx = classNames.bind(style);
-
 function PlaylistContent({ active }) {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.audio.data);

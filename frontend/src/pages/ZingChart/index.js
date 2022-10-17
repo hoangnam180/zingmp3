@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineLine } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
 
 import './Zingchart.scss';
 import LineChart from '~/components/LineChart';
 import * as chartSevices from '~/services/chart.sevices';
 import ItemPlay from '~/components/ItemPlay';
-import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentIndex, setData as setDataRedux } from '~/redux/actions/audio';
 import Loading from '~/components/Loading';
 // import ItemPlay from '~/layouts/Footer/component/PlaylistContent/ItemPlay';
 
 function ZingChar() {
     const [data, setData] = useState([]);
-    const dataSong = useSelector((state) => state.audio.data);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(false);
+    const [perPage, setPerPage] = useState(9);
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
@@ -40,6 +41,7 @@ function ZingChar() {
 
     const dataChart =
         data?.RTChart?.items &&
+        // eslint-disable-next-line array-callback-return
         data?.RTChart?.items.map((item, index) => {
             if (index <= 2 && dataCounter) {
                 return { label: item?.title, data: dataCounter[index] };
@@ -49,6 +51,16 @@ function ZingChar() {
     const handleClickItem = (encodeId, index) => {
         dispatch(setCurrentIndex(index));
         dispatch(setDataRedux(data?.RTChart?.items));
+    };
+
+    const handleMore = (type) => {
+        if (type === 'more') {
+            setPerPage(data?.RTChart?.items?.length);
+            setPage(true);
+        } else {
+            setPage(false);
+            setPerPage(9);
+        }
     };
     return (
         <>
@@ -71,7 +83,7 @@ function ZingChar() {
                         {data?.RTChart?.items &&
                             data?.RTChart?.items.map(
                                 (item, index) =>
-                                    index <= 9 && (
+                                    index <= perPage && (
                                         <div className="playlist-item d-flex align-items-center" key={item.encodeId}>
                                             <div className={`playlist-position top-${index + 1}`}>{index + 1}</div>
                                             <div className="playlist-line">
@@ -87,6 +99,13 @@ function ZingChar() {
                                         </div>
                                     ),
                             )}
+                        <div className="button-more">
+                            {!page ? (
+                                <h3 onClick={() => handleMore('more')}>Xem Top 100</h3>
+                            ) : (
+                                <h3 onClick={handleMore}>Thu Gọn</h3>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

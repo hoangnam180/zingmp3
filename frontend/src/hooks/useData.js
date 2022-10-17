@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentIndex } from '~/redux/actions/audio';
 
+import { setCurrentIndex } from '~/redux/actions/audio';
 import * as songSevices from '~/services/song.sevices';
 
 function useData(value = '') {
@@ -21,7 +21,7 @@ function useData(value = '') {
             }
         };
         fetchData();
-    }, [value, dispatch]);
+    }, [value, dispatch, currentIndex]);
 
     return data;
 }

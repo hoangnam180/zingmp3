@@ -22,7 +22,7 @@ const todoReducer = (state = initialState, action) => {
             };
         }
         case 'SET_INDEX': {
-            if (action.payload === 'number') localStorage.setItem('currentIndex', JSON.stringify(action.payload));
+            if (Number(action.payload)) localStorage.setItem('currentIndex', JSON.stringify(action.payload));
             return {
                 ...state,
                 currentIndex: action.payload,

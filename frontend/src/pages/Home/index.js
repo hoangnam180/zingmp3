@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import style from './Home.module.scss';
 import * as searchServices from '~/services/home.sevices';
@@ -13,7 +14,7 @@ const cx = classNames.bind(style);
 function Home() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const navigator = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -22,6 +23,10 @@ function Home() {
             setLoading(false);
         };
         fetchData();
+        return () => {
+            setData([]);
+            setLoading(false);
+        };
     }, []);
 
     // dataFilter
@@ -39,8 +44,11 @@ function Home() {
                 item['id'] = newId;
                 return item;
             });
-    // temp Page
 
+    // temp Page
+    const handlePlaylist = (id) => {
+        navigator(`/album/${id}`);
+    };
     return (
         <div className={cx('wrapper')}>
             {loading ? (
@@ -50,13 +58,21 @@ function Home() {
                     <Slider data={data} />
                     {/* new-release */}
                     {dataFilter.length > 0 &&
+                        // eslint-disable-next-line array-callback-return
                         dataFilter.map((item) => {
                             if (item?.title && item.sectionType !== 'new-release' && item.sectionId !== 'hNewrelease') {
-                                return <Playlist key={item?.id} title={item.title} data={item.items} />;
+                                return (
+                                    <Playlist
+                                        key={item?.id}
+                                        title={item.title}
+                                        data={item.items}
+                                        clickItem={handlePlaylist}
+                                    />
+                                );
                             } else if (item?.sectionId === 'hNewrelease') {
                                 return <Playlist key={item.id} type={true} data={item.items} title={item.title} />;
                             } else if (item.sectionId === 'hAlbum') {
-                                return <Playlist key={item.id} data={item.items} />;
+                                return <Playlist key={item.id} data={item.items} clickItem={handlePlaylist} />;
                             } else if (item?.sectionType === 'new-release') {
                                 return <ListSong key={item?.id} data={item.items[0]} title={item.title} />;
                             } else {

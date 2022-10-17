@@ -44,6 +44,50 @@ body {
     line-height: 1.5;
     text-rendering: optimizespeed;
 }
+.small-btn {
+    padding: 4px 12px;
+    display: inline-block;
+    border-radius: 16px;
+
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #fff;
+}
+
+.small-btn {
+    margin-right: 16px;
+}
+
+.small-btn.primary {
+    background-color: var(--color-default-secondary);
+}
+
+.small-btn.default {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: #fff;
+}
+
+.small-btn.default:hover {
+    color: var(--color-default-secondary);
+    border-color: var(--color-default-secondary);
+}
+
+.icon-button {
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    font-size: 16px;
+    margin: 0 2px;
+    border-radius: 50%;
+}
+
+.icon-button:hover {
+    background: var(--background-white);
+}
 
 button,
 input,

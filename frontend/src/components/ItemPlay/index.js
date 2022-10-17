@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import style from './PlaylistContent.module.scss';
 import { formatTime } from '~/utils/formatTime';
+import Image from '../Image';
 
 const cx = classNames.bind(style);
 
@@ -21,7 +22,7 @@ function ItemPlay({ data, index, duration, border = true, handleOnClick = () => 
             <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                 <div className="flex itemcenter">
                     <span className={cx('list-album-header-icon')}>{/* <i className="ti-music-alt"></i> */}</span>
-                    <img className={cx('song-album-item-img')} src={data?.thumbnailM} alt="info" />
+                    <Image className={cx('song-album-item-img')} src={data?.thumbnailM} alt="info" />
                 </div>
                 <div className={cx('detail')}>
                     <div className={cx('detail-title')}>

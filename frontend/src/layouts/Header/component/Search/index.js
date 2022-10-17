@@ -5,8 +5,8 @@ import { useState, useRef, useEffect } from 'react';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
 import useDebounce from '~/hooks/useDebounced';
 import * as SearchServices from '~/services/search.sevices';
-const cx = classNames.bind(style);
 
+const cx = classNames.bind(style);
 function Search() {
     const [keywords, setKeyWord] = useState('');
     const [active, setActive] = useState(false);

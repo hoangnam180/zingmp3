@@ -5,30 +5,31 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import './Newmusic.scss';
 import * as chartSevices from '~/services/chart.sevices';
 import ItemPlay from '~/components/ItemPlay';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentIndex, setData as setDataRedux } from '~/redux/actions/audio';
 import Loading from '~/components/Loading';
-// import ItemPlay from '~/layouts/Footer/component/PlaylistContent/ItemPlay';
 
 function NewMusic() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             const result = await chartSevices.newReleaseChart();
             setData(result?.items);
-            console.log(result);
             setLoading(false);
         };
         fetchData();
     }, []);
+
     const handleClickItem = (encodeId) => {
         dispatch(setDataRedux(data));
         const indexFind = data.findIndex((item) => item.encodeId === encodeId);
         dispatch(setCurrentIndex(indexFind));
     };
+
     return (
         <>
             {loading ? (

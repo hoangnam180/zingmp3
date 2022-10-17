@@ -1,30 +1,19 @@
 import classNames from 'classnames/bind';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import './PlayItem.css';
 import { BsThreeDots, BsPlayCircle } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
 import PropTypes from 'prop-types';
-
-import { setCurrentIndex } from '~/redux/actions/audio';
 import style from './Playlist.module.scss';
+import Image from '../Image';
 
 const cx = classNames.bind(style);
 
-const PlayItem = ({ data }) => {
-    const dispatch = useDispatch();
-    const navigator = useNavigate();
-
+const PlayItem = ({ data, onClick = () => {} }) => {
     return (
-        <div
-            className="card-list"
-            onClick={() => {
-                navigator(`/album/${data?.encodeId}`);
-                dispatch(setCurrentIndex(0));
-            }}
-        >
+        <div className="card-list" onClick={() => onClick(data?.encodeId, data?.id)}>
             <div className="card-list-image">
-                <img src={data?.thumbnailM} alt="thumbnail" />
+                <Image src={data?.thumbnailM} alt="thumbnail" />
                 <div className="card-list-image-hover">
                     <AiOutlineHeart className="card-list-icon small" />
                     <BsPlayCircle className="card-list-icon big" />

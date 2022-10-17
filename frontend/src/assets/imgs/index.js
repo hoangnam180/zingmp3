@@ -6,6 +6,7 @@ const images = {
     history: require('~/assets/imgs/my-history.374cb625.svg').default,
     radio1: require('~/assets/imgs/radio-1.svg').default,
     imgplay: require('~/assets/imgs/imgplay.jpg'),
+    noImage: require('~/assets/imgs/noimg.png'),
 };
 
 export default images;

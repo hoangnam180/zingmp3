@@ -1,12 +1,15 @@
-import './CardList.css';
 import { BsThreeDots, BsPlayCircle } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
+import PropTypes from 'prop-types';
+
+import './CardList.css';
+import Image from '../Image';
 
 const CardItem = ({ data, onClick, card = true }) => {
     return (
         <div className="card-list" onClick={onClick}>
             <div className="card-list-image">
-                <img src={data.thumbnail} alt="thumbnail" />
+                <Image src={data.thumbnail} alt="thumbnail" />
                 {card ? (
                     <div className="card-list-image-hover">
                         <AiOutlineHeart className="card-list-icon small" />
@@ -23,7 +26,7 @@ const CardItem = ({ data, onClick, card = true }) => {
             {card && (
                 <div className="card-list-bottom d-flex align-items-center">
                     <div className="card-list-bottom-avatar d-flex align-items-center">
-                        <img src={data.thumbnail} alt="thumbnail" />
+                        <Image src={data.thumbnail} alt="thumbnail" />
                     </div>
                     <div>
                         <h4 className="card-list-title">{data.title}</h4>
@@ -34,5 +37,9 @@ const CardItem = ({ data, onClick, card = true }) => {
         </div>
     );
 };
-
+CardItem.propTypes = {
+    data: PropTypes.object,
+    onClick: PropTypes.func,
+    card: PropTypes.bool,
+};
 export default CardItem;

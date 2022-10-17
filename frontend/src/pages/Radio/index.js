@@ -1,15 +1,17 @@
+import { useState, useEffect } from 'react';
+
 import './Radio.scss';
 import img from '~/assets/imgs';
 import CardItem from '~/components/CardItem';
-import { useEffect } from 'react';
 import * as radioSevices from '~/services/radio.sevices';
-import { useState } from 'react';
 import Playlist from '~/components/Playlist';
 import Loading from '~/components/Loading';
+import Image from '~/components/Image';
 
 const Radio = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -19,6 +21,7 @@ const Radio = () => {
         };
         fetchData();
     }, []);
+
     const dataPodcast = data.filter((item) => item.sectionType === 'podcast');
     return (
         <>
@@ -31,8 +34,8 @@ const Radio = () => {
                                 <div className="col-radio" key={list.encodeId}>
                                     <div className="radio-box">
                                         <div className="radio-top">
-                                            <img className="radio-top-img" src={img.radio1} alt="radio" />
-                                            <img
+                                            <Image className="radio-top-img" src={img.radio1} alt="radio" />
+                                            <Image
                                                 className="radio-top-live-icon"
                                                 src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/live-tag.svg"
                                                 alt="live"
@@ -47,7 +50,7 @@ const Radio = () => {
                     {dataPodcast &&
                         dataPodcast.length > 0 &&
                         dataPodcast.map((item, index) => {
-                            return <Playlist key={index} title={item.title} data={item.items} />;
+                            return <Playlist key={index} title={item.title} data={item.items} wide={false} />;
                         })}
                 </div>
             ) : (

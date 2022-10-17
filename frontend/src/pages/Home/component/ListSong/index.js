@@ -2,16 +2,18 @@ import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { setCurrentIndex, setData } from '~/redux/actions/audio';
 import style from './ListSong.module.scss';
 import ItemInFo from '~/components/ItemInFo';
-const cx = classNames.bind(style);
 
+const cx = classNames.bind(style);
 function ListSong({ title, data }) {
-    let navigate = useNavigate();
     const [tab, setTab] = useState('song');
+
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     const handlePlaylist = (id) => {
         if (tab === 'song') {
@@ -20,7 +22,6 @@ function ListSong({ title, data }) {
             dispatch(setCurrentIndex(index));
         } else {
             navigate(`/album/${id}`);
-            dispatch(setCurrentIndex(0));
         }
     };
 
@@ -41,9 +42,9 @@ function ListSong({ title, data }) {
                 </p>
             </div>
             <div className="row">
-                {data[tab].map((item, index) => {
-                    if (index < 12)
-                        return (
+                {data[tab].map(
+                    (item, index) =>
+                        index < 12 && (
                             <div
                                 onClick={() => {
                                     handlePlaylist(item?.encodeId);
@@ -53,11 +54,15 @@ function ListSong({ title, data }) {
                             >
                                 <ItemInFo key={item?.encodeId} data={item} index={index} />
                             </div>
-                        );
-                })}
+                        ),
+                )}
             </div>
         </div>
     );
 }
 
+ListSong.propTypes = {
+    title: PropTypes.string,
+    data: PropTypes.object,
+};
 export default ListSong;

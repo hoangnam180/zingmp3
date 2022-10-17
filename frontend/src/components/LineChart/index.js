@@ -1,6 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJs, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
-
+import PropTypes from 'prop-types';
 const LineChart = ({ label, dataChart }) => {
     const styles = {
         borderWidth: 2,
@@ -92,4 +92,8 @@ const LineChart = ({ label, dataChart }) => {
     return <Line data={chartData.data} options={chartData.options} />;
 };
 
+LineChart.propTypes = {
+    label: PropTypes.array,
+    dataChart: PropTypes.array,
+};
 export default LineChart;

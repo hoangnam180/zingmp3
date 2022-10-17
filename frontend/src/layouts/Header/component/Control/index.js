@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
+
 import style from './Control.module.scss';
 
 const cx = classNames.bind(style);

@@ -1,25 +1,26 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import * as albumSevices from '~/services/album.sevices';
-import { useParams } from 'react-router-dom';
 import { formatTime } from '~/utils/formatTime';
 import style from './Album.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentIndex, setData } from '~/redux/actions/audio';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(style);
 
 function Albums() {
     const [album, setAlbum] = useState();
-
-    const dispatch = useDispatch();
-
-    const params = useParams();
-
+    const data = useSelector((state) => state.audio.data);
     const currentIndex = useSelector((state) => state.audio.currentIndex);
 
+    const dispatch = useDispatch();
+    const params = useParams();
+
     const handleAlbum = (index) => {
+        dispatch(setData(album?.song?.items));
         dispatch(setCurrentIndex(index));
     };
 
@@ -27,14 +28,14 @@ function Albums() {
         const fetchApi = async () => {
             const result = await albumSevices.albums(params?.id);
             setAlbum(result);
-            dispatch(setData(result?.song?.items));
         };
         fetchApi();
     }, [params, dispatch]);
+
     return (
         <div className={cx('album ')}>
             <div className={cx('album__detail-img')}>
-                <img className={cx('album__img')} src={album?.thumbnailM} alt="album" />
+                <Image className={cx('album__img')} src={album?.thumbnailM} alt="album" />
                 <h2 className={cx('albumTitle')}>{album?.title}</h2>
                 <p className={cx('albumDetail')}>Cập nhật : {album?.releaseDate}</p>
                 <p className={cx('albumDetail')}>{album?.artistsNames}</p>
@@ -57,14 +58,20 @@ function Albums() {
                     album?.song?.items?.map((item, index) => (
                         <div
                             key={item?.encodeId}
-                            className={cx('list-album-item', { songActive: index === currentIndex })}
+                            className={cx('list-album-item', {
+                                songActive: item?.encodeId === data[currentIndex]?.encodeId && index === currentIndex,
+                            })}
                             onClick={() => handleAlbum(index)}
                         >
                             <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                                     <span className={cx('list-album-header-icon')}></span>
                                     <i className="ti-music-alt"></i>
-                                    <img className={cx('song-album-item-img')} src={item?.thumbnailM} alt="thumbnail" />
+                                    <Image
+                                        className={cx('song-album-item-img')}
+                                        src={item?.thumbnailM}
+                                        alt="thumbnail"
+                                    />
                                 </div>
                                 <div className={cx('detail')}>
                                     <div className={cx('detail-title')}>

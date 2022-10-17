@@ -10,6 +10,7 @@ import 'swiper/css/autoplay';
 import PropTypes from 'prop-types';
 
 import style from '../../Home.module.scss';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(style);
 function Slider({ data }) {
@@ -21,6 +22,7 @@ function Slider({ data }) {
             </button>
         );
     };
+
     const SwiperButtonPrev = ({ children }) => {
         const swiper = useSwiper();
         return (
@@ -33,6 +35,7 @@ function Slider({ data }) {
     const handleCard = (id) => {
         alert('Chức năng này hiện đang cập nhật!');
     };
+
     const banner =
         data &&
         data?.length > 0 &&
@@ -54,7 +57,7 @@ function Slider({ data }) {
                     banner.map((item, index) => (
                         <SwiperSlide key={item?.encodeId} className="col c-6 m-4 l-4">
                             <div className={cx('images')} onClick={() => handleCard(item.encodeId)}>
-                                <img src={item.banner} alt="banner" />
+                                <Image src={item.banner} alt="banner" />
                             </div>
                         </SwiperSlide>
                     ))}

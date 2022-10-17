@@ -4,13 +4,15 @@ import { useSwiper } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import PropTypes from 'prop-types';
+
 import style from './Slider.module.scss';
 import PlayItem from '../Playlist/PlayItem';
 import CardHozon from '../CardHozon';
 
 const cx = classNames.bind(style);
 
-function SliderWrap({ children, data, control = false, type }) {
+function SliderWrap({ data, control = false, type, onClick = () => {} }) {
     const SwiperButtonNext = ({ children }) => {
         const swiper = useSwiper();
         return (
@@ -41,7 +43,7 @@ function SliderWrap({ children, data, control = false, type }) {
             {data?.length > 0 &&
                 data.map((item, index) => (
                     <SwiperSlide key={item?.encodeId} className={`${!type ? 'col c-6 m-3 l-2-4' : 'col c-6 m-4 l-4'}`}>
-                        {!type ? <PlayItem data={item} /> : <CardHozon data={item} index={index} />}
+                        {!type ? <PlayItem onClick={onClick} data={item} /> : <CardHozon data={item} index={index} />}
                     </SwiperSlide>
                 ))}
             {control ? (
@@ -66,4 +68,10 @@ function SliderWrap({ children, data, control = false, type }) {
     );
 }
 
+SliderWrap.propTypes = {
+    data: PropTypes.array,
+    control: PropTypes.bool,
+    type: PropTypes.any,
+    onClick: PropTypes.func,
+};
 export default SliderWrap;
