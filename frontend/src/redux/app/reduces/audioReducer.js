@@ -6,6 +6,7 @@ const initialState = {
     currentIndex:
         (localStorage.getItem('current_index') !== null && JSON.parse(localStorage.getItem('current_index'))) || 0,
     currentSong: {},
+    dataFavorite: [],
 };
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {

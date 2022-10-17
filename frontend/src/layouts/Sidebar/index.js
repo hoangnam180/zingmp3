@@ -20,7 +20,6 @@ const menuScroll = [
     { title: 'Nhạc Mới', path: config.newmusic, icon: 'fa-solid fa-music' },
     { title: 'Thể Loại', path: config.category, icon: 'fa-solid fa-icons' },
     { title: 'Top 100', path: config.top100, icon: 'fa-solid fa-star' },
-    { title: 'MV', path: config.mv, icon: 'fa-solid fa-record-vinyl' },
 ];
 const menuLibrary = [
     { title: 'Thư Viện' },

@@ -18,10 +18,6 @@ const MyMusic = () => {
             path: 'album',
             title: 'Album',
         },
-        {
-            path: 'mymusicmv',
-            title: 'Mv',
-        },
     ];
 
     const handleClickTitle = (e) => {

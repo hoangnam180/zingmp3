@@ -8,7 +8,6 @@ const routes = {
     newmusic: '/newmusic',
     category: '/category',
     top100: '/top100',
-    mv: '/mv',
     album: 'album',
 };
 

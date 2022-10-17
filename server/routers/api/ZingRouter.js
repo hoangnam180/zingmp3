@@ -47,6 +47,9 @@ router.get("/listmv", ZingController.getListMV);
 // getCategoryMV
 router.get("/categorymv", ZingController.getCategoryMV);
 
+router.get("/hub", ZingController.getCategory);
+router.get("/detailhub", ZingController.getCategoryDetail);
+
 // getVideo
 router.get("/video", ZingController.getVideo);
 

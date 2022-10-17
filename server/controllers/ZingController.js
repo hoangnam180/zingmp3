@@ -30,6 +30,17 @@ class ZingController {
       res.json(data);
     });
   }
+  getCategory(req, res) {
+    zing.get_hub_home().then((data) => {
+      res.json(data);
+    });
+  }
+
+  getCategoryDetail(req, res) {
+    zing.get_hub_detail(req.query.id).then((data) => {
+      res.json(data);
+    });
+  }
 
   getChartHome(req, res) {
     ZingMp3.getChartHome().then((data) => {
