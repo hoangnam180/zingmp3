@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from './NavbarItem.module.scss';
 import Image from '~/components/Image';
+import { BsPlayCircle } from 'react-icons/bs';
 const cx = classNames.bind(styles);
 
 function NavbarItem({ data, link }) {
@@ -22,7 +23,7 @@ function NavbarItem({ data, link }) {
                         <span className={cx('nav-title')}>{data?.title}</span>
                     </div>
                     <span className={cx('icon-hover')}>
-                        <i className="ti-control-play"></i>
+                        <BsPlayCircle className="card-list-icon" style={{ fontSize: '30px', marginRight: '15px' }} />
                     </span>
                 </Link>
             ) : (
@@ -40,9 +41,9 @@ function NavbarItem({ data, link }) {
                         )}
                         <span className={cx('nav-title')}>{data?.title}</span>
                     </div>
-                    <span className={cx('icon-hover')}>
-                        <i className="ti-control-play"></i>
-                    </span>
+                    <div className={cx('icon-hover')}>
+                        <BsPlayCircle className="card-list-icon" style={{ fontSize: '30px', marginRight: '15px' }} />
+                    </div>
                 </NavLink>
             )}
         </li>

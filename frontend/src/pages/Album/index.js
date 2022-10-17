@@ -73,7 +73,7 @@ function Albums() {
                                     <div className={cx('list-album-song-name', { 'song-album-item': true })}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                                             <span className={cx('list-album-header-icon')}></span>
-                                            <i className="ti-music-alt"></i>
+                                            <i className="fa-solid fa-music"></i>
                                             <Image
                                                 className={cx('song-album-item-img')}
                                                 src={item?.thumbnailM}

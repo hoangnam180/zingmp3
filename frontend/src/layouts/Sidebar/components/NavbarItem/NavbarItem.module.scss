@@ -40,18 +40,6 @@
         .icon-hover {
             font-size: 18px;
             display: none;
-
-            &::after {
-                content: "";
-                height: 24px;
-                width: 24px;
-                border-width: 1px;
-                border-color: #fff;
-                border-style: solid;
-                border-radius: 50%;
-                transform: translate(-24px, 5px);
-                display: inline-block;
-            }
         }
 
         .nav-title {
@@ -64,7 +52,6 @@
 
 // Resonsive
 @media only screen and (min-width: 737px) and (max-width: 1024px) {
-
     .nav-item {
         flex-direction: row;
         flex-wrap: nowrap;
@@ -82,7 +69,7 @@
 
             .nav-icon {
                 font-size: 2rem;
-                opacity: .8;
+                opacity: 0.8;
             }
 
             .icon-hover {

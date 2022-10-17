@@ -31,13 +31,13 @@ function InfoAudio() {
                     <div className={cx('footer-like')}>
                         <input name="check-heart" type="checkbox" hidden />
                         <span className={cx('btn-like')}>
-                            <i className="ti-heart"></i>
+                            <i className="fa-regular fa-heart"></i>
                         </span>
                         <span className={cx('btn-like')}>
                             <i className="fa-solid fa-heart"></i>
                         </span>
                         <div className={cx('footer-more')}>
-                            <i className="ti-more"></i>
+                            <i className="fa-solid fa-ellipsis"></i>
                         </div>
                     </div>
                 </div>

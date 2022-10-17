@@ -57,7 +57,7 @@ function SideBar() {
                     </div>
                 </div>
                 <div className={cx('nav-new-playlist')}>
-                    <i className="ti-plus"></i>
+                    <i className="fa-solid fa-plus"></i>
                     <span className={cx('nav-title')}>Tạo playlist mới</span>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import style from './Search.module.scss';
-
+import { AiOutlineSearch } from 'react-icons/ai';
+import { MdOutlineClear } from 'react-icons/md';
 import { useState, useRef, useEffect } from 'react';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
 import useDebounce from '~/hooks/useDebounced';
@@ -52,7 +53,7 @@ function Search() {
     return (
         <div className={cx('search')} ref={searchRef}>
             <button className={cx('icon-search')}>
-                <i className="ti-search"></i>
+                <AiOutlineSearch style={{ fontSize: '25px' }} />
             </button>
             <input
                 value={keywords}
@@ -66,7 +67,7 @@ function Search() {
             />
             {keywords && (
                 <button className={cx('icon-close')} onClick={() => setKeyWord('')}>
-                    <i className="ti-close"></i>
+                    <MdOutlineClear style={{ fontSize: '19px' }} />
                 </button>
             )}
             <SuggestedAccounts active={active} data={valueResult} title={title} />

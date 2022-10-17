@@ -15,10 +15,9 @@ function ListSong({ title, data }) {
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
-    const handlePlaylist = (id) => {
+    const handlePlaylist = (index, id) => {
         if (tab === 'song') {
-            const index = data[tab]?.findIndex((item) => item?.encodeId === id);
-            dispatch(setData(data[tab]));
+            dispatch(setData(data['song']));
             dispatch(setCurrentIndex(index));
         } else {
             navigate(`/album/${id}`);
@@ -38,7 +37,7 @@ function ListSong({ title, data }) {
                     </button>
                 </div>
                 <p className={cx('discovery-btn')}>
-                    Tất cả <i className="ti-angle-right"></i>
+                    Tất cả <i className="fa-solid fa-chevron-right"></i>
                 </p>
             </div>
             <div className="row">
@@ -47,7 +46,7 @@ function ListSong({ title, data }) {
                         index < 12 && (
                             <div
                                 onClick={() => {
-                                    handlePlaylist(item?.encodeId);
+                                    handlePlaylist(index, item?.encodeId);
                                 }}
                                 key={item.encodeId}
                                 className="col c-6 l-4 l-2-4"

@@ -22,10 +22,10 @@
 
 .mymusic-title-border {
     height: 2px;
-    width: 133px;
+    width: 0;
     left: 0;
     transition: all ease 0.35s;
-
+    width: 133px;
     background-color: var(--color-default-secondary);
     position: absolute;
 }

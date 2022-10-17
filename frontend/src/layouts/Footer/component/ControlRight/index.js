@@ -51,7 +51,7 @@ function ControlRight({ audioPlayer }) {
                 />
                 <div className={cx('footer-playlist')} onClick={() => setIsActive(!isActive)}>
                     <span>
-                        <i className="ti-align-right"></i>
+                        <i className="fa-solid fa-list"></i>
                     </span>
                 </div>
             </div>

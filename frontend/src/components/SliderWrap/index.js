@@ -51,13 +51,13 @@ function SliderWrap({ data, control = false, type, onClick = () => {} }) {
                     <SwiperButtonPrev>
                         {' '}
                         <span>
-                            <i className="ti-angle-left"></i>
+                            <i className="fa-solid fa-chevron-left"></i>
                         </span>
                     </SwiperButtonPrev>
                     <SwiperButtonNext>
                         {' '}
                         <span>
-                            <i className="ti-angle-right"></i>
+                            <i className="fa-solid fa-chevron-right"></i>
                         </span>
                     </SwiperButtonNext>
                 </div>

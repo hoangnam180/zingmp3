@@ -15,7 +15,7 @@ function Control() {
                     navigate(-1);
                 }}
             >
-                <i className="ti-arrow-left"></i>
+                <i className="fa-solid fa-angle-left"></i>
             </button>
             <button
                 small="true"
@@ -24,7 +24,7 @@ function Control() {
                     navigate(+1);
                 }}
             >
-                <i className="ti-arrow-right"></i>
+                <i className="fa-solid fa-angle-right"></i>
             </button>
         </>
     );
