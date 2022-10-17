@@ -23,11 +23,11 @@ const publicRoutes = [
         path: config.my_music,
         component: MyMusic,
         children: [
-            { index: true, path: null, component: Song },
             { path: 'song', component: Song },
             { path: 'podcast', component: PodCast },
             { path: 'album', component: Album },
             { path: 'mymusicmv', component: MyMusicMv },
+            { index: true, path: null, component: Song },
         ],
     },
     { path: config.zing_chart, component: ZingChart },

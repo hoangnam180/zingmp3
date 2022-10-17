@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
+import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './MyMusic.css';
 
 const MyMusic = () => {
+    const refItem = useRef();
+    const [styles, setStyles] = useState({});
     const handleClickTitle = (e) => {
         const mymusicTitleBorder = document.querySelector('.mymusic-title-border');
         mymusicTitleBorder.style.width = e.target.offsetWidth + 'px';
@@ -17,22 +20,22 @@ const MyMusic = () => {
             <div className="mymusic-title-group">
                 <ul>
                     <li>
-                        <Link onClick={handleClickTitle} to="/mymusic/song">
+                        <Link onClick={handleClickTitle} to="song">
                             Bài hát yêu thích
                         </Link>
                     </li>
                     <li>
-                        <Link onClick={handleClickTitle} to="/mymusic/podcast">
+                        <Link onClick={handleClickTitle} to="podcast">
                             Podcast
                         </Link>
                     </li>
                     <li>
-                        <Link onClick={handleClickTitle} to="/mymusic/album">
+                        <Link onClick={handleClickTitle} to="album">
                             Album
                         </Link>
                     </li>
                     <li>
-                        <Link onClick={handleClickTitle} to="/mymusic/mymusicmv">
+                        <Link onClick={handleClickTitle} to="mymusicmv">
                             Mv
                         </Link>
                     </li>
