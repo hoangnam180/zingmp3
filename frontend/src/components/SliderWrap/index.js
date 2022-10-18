@@ -5,6 +5,7 @@ import { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import style from './Slider.module.scss';
 import PlayItem from '../Playlist/PlayItem';
@@ -13,6 +14,16 @@ import CardHozon from '../CardHozon';
 const cx = classNames.bind(style);
 
 function SliderWrap({ data, control = false, type, onClick = () => {} }) {
+    const dataAddHeart =
+        data &&
+        data?.length > 0 &&
+        data?.map((item, index) => {
+            return {
+                ...item,
+                isHeart: false,
+            };
+        });
+    const [resultData, setResultData] = useState(dataAddHeart?.length > 0 && dataAddHeart);
     const SwiperButtonNext = ({ children }) => {
         const swiper = useSwiper();
         return (
@@ -40,10 +51,20 @@ function SliderWrap({ data, control = false, type, onClick = () => {} }) {
             autoplay={{ delay: 10000 }}
             scrollbar={{ draggable: false }}
         >
-            {data?.length > 0 &&
-                data.map((item, index) => (
+            {resultData?.length > 0 &&
+                resultData.map((item, index) => (
                     <SwiperSlide key={item?.encodeId} className={`${!type ? 'col c-6 m-3 l-2-4' : 'col c-6 m-4 l-4'}`}>
-                        {!type ? <PlayItem onClick={onClick} data={item} /> : <CardHozon data={item} index={index} />}
+                        {!type ? (
+                            <PlayItem
+                                onClick={onClick}
+                                data={item}
+                                index={index}
+                                resultData={resultData}
+                                setResultData={setResultData}
+                            />
+                        ) : (
+                            <CardHozon data={item} index={index} />
+                        )}
                     </SwiperSlide>
                 ))}
             {control ? (

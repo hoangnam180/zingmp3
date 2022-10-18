@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import './MyMusic.css';
 
+import './MyMusic.css';
 const MyMusic = () => {
     const refBorder = useRef();
     const menu = [
@@ -11,12 +11,12 @@ const MyMusic = () => {
             title: 'Bài hát yêu thích',
         },
         {
-            path: 'podcast',
-            title: 'Podcast',
-        },
-        {
             path: 'album',
             title: 'Album',
+        },
+        {
+            path: 'podcast',
+            title: 'Podcast',
         },
     ];
 

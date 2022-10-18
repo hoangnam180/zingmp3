@@ -20,6 +20,10 @@ const Radio = () => {
             setLoading(false);
         };
         fetchData();
+        return () => {
+            setData([]);
+            setLoading(false);
+        };
     }, []);
 
     const dataPodcast = data.filter((item) => item.sectionType === 'podcast');

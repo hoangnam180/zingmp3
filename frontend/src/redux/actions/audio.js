@@ -35,3 +35,15 @@ export const setData = (data) => {
         payload: data,
     };
 };
+export const setSongFavorite = (data) => {
+    return {
+        type: 'SET_SONG_FAVORITE',
+        payload: data,
+    };
+};
+export const setAlbumFavorite = (data) => {
+    return {
+        type: 'SET_ALBUM_FAVORITE',
+        payload: data,
+    };
+};

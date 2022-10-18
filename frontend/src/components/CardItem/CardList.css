@@ -6,7 +6,11 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    object-fit: cover;
+}
+
+.card-list-image.heart {
+    object-fit: contain;
+    height: 200px;
 }
 
 .card-list-image img {

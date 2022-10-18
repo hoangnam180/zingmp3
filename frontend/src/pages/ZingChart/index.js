@@ -9,8 +9,6 @@ import * as chartSevices from '~/services/chart.sevices';
 import ItemPlay from '~/components/ItemPlay';
 import { setCurrentIndex, setData as setDataRedux } from '~/redux/actions/audio';
 import Loading from '~/components/Loading';
-// import ItemPlay from '~/layouts/Footer/component/PlaylistContent/ItemPlay';
-
 function ZingChar() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -25,6 +23,12 @@ function ZingChar() {
             setLoading(false);
         };
         fetchData();
+        return () => {
+            setData([]);
+            setLoading(false);
+            setPage(false);
+            setPerPage(9);
+        };
     }, []);
 
     const label = data?.RTChart?.chart?.times?.map((item) => {

@@ -1,7 +1,9 @@
 function NotFound() {
-    return (  
-       <div>Not found 404</div>
+    return (
+        <div>
+            <h1>Chưa có chức năng này !!</h1>
+        </div>
     );
 }
 
-export default NotFound
+export default NotFound;

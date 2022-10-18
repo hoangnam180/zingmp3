@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineLine } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
 
 import './Newmusic.scss';
 import * as chartSevices from '~/services/chart.sevices';
 import ItemPlay from '~/components/ItemPlay';
-import { useDispatch } from 'react-redux';
 import { setCurrentIndex, setData as setDataRedux } from '~/redux/actions/audio';
 import Loading from '~/components/Loading';
 
@@ -22,6 +22,10 @@ function NewMusic() {
             setLoading(false);
         };
         fetchData();
+        return () => {
+            setLoading(false);
+            setData([]);
+        };
     }, []);
 
     const handleClickItem = (encodeId) => {

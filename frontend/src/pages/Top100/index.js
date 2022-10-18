@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Playlist from '~/components/Playlist';
 import './Top100.scss';
 import * as topMusicServices from '~/services/topmusic.sevices';
@@ -20,6 +21,10 @@ const TopMusic = () => {
             setLoading(false);
         };
         fetchData();
+        return () => {
+            setData([]);
+            setLoading(false);
+        };
     }, []);
 
     return (

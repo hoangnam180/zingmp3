@@ -6,7 +6,8 @@ const initialState = {
     currentIndex:
         (localStorage.getItem('current_index') !== null && JSON.parse(localStorage.getItem('current_index'))) || 0,
     currentSong: {},
-    dataFavorite: [],
+    songFavorite: [],
+    albumFavorite: JSON.parse(localStorage.getItem('listFavorite')) || [],
 };
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -51,6 +52,25 @@ const todoReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     data: [...action.payload],
+                };
+            }
+            return state;
+        }
+        case 'SET_SONG_FAVORITE': {
+            if (action.payload) {
+                return {
+                    ...state,
+                    songFavorite: [...state.songFavorite, action.payload],
+                };
+            }
+            return state;
+        }
+        case 'SET_ALBUM_FAVORITE': {
+            if (action.payload) {
+                localStorage.setItem('listFavorite', JSON.stringify([...action.payload]));
+                return {
+                    ...state,
+                    albumFavorite: [...action.payload],
                 };
             }
             return state;
