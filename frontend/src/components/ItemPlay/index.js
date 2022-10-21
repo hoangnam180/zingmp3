@@ -14,7 +14,7 @@ function ItemPlay({ data, index, duration, border = true, handleOnClick = () => 
     return (
         <div
             className={cx('list-album-item', {
-                active: data.encodeId === dataRedux[currentIndex].encodeId && index === currentIndex,
+                active: data?.encodeId === dataRedux[currentIndex]?.encodeId && index === currentIndex,
                 border: border,
             })}
             onClick={() => handleOnClick(data?.encodeId, index)}
